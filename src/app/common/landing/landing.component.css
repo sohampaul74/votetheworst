@@ -1,0 +1,11 @@
+.fa-arrow-circle-up {
+    color:blue;
+}
+.fa-arrow-circle-up:hover {
+    cursor:pointer;
+    color:red;
+    transition: color 1s;
+}
+#btn-vote-the-worst {
+    margin-top:-6px;
+}

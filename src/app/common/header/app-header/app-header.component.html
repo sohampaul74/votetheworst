@@ -35,6 +35,6 @@
           </div>
         </li>
       </ul>
-      <app-entry></app-entry>
+      <app-entry [modalWindowOptions]="modalWindowOptions" (showHideModal)="modalWindowControl($event)"></app-entry>
     </div>
   </nav>

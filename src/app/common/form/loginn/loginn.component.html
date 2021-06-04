@@ -1,0 +1,62 @@
+<form style="width:300px" #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)">
+    <h5>Login to get started</h5>
+    <hr class="mt-4 mb-2">
+    <div class="input-group my-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-user-o" aria-hidden></i>
+                &nbsp;
+            </span>
+        </div>
+        <input 
+            [disabled]="this.isSubmitted == true" 
+            aria-describedby="usernameHelp1 usernameHelp2" 
+            type="text" class="form-control" 
+            [(ngModel)]="authModel.username" 
+            #username="ngModel" 
+            id="username" 
+            name="username" 
+            placeholder="provide username here" 
+            required
+            minlength="4"
+            maxlength="20">
+        <small 
+            [style.visibility]="loginForm.invalid && loginForm.controls['username']?.touched && loginForm.controls['username']?.valid === false ? 'visible' : 'hidden' " 
+            id="usernameHelp2" 
+            class="form-text text-danger">
+                Username should be atleast 4 characters long
+        </small>
+    </div>
+    <div class="input-group my-3 pb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-key" aria-hidden></i>
+                &nbsp;
+            </span>
+        </div>
+        <input 
+            [disabled]="this.isSubmitted == true" 
+            aria-describedby="passwordHelp" 
+            type="password" 
+            class="form-control" 
+            [(ngModel)]="authModel.password"
+            #password="ngModel" 
+            id="password" 
+            name="password" 
+            placeholder="provide password here" 
+            required
+            minlength="6"
+            maxlength="30">
+        <small 
+            [style.visibility]="loginForm.invalid && loginForm.controls['password']?.touched && loginForm.controls['password']?.valid === false ? 'visible' : 'hidden' " 
+            id="usernameHelp" 
+            class="form-text text-danger">
+                Password should be atleast 6 characters long
+        </small>
+    </div>
+    <div class="text-right">
+        <a (click)="showForgotPassword()" class="btn btn-outline-info btn-sm ml-3 mr-2" href="#" role="button">Forgot password</a>
+        <button [hidden]="this.isSubmitted == true" type="submit" class="btn btn-primary btn-sm align-right">Login</button>
+        <button [hidden]="this.isSubmitted == false" type="submit" class="btn btn-primary btn-sm align-right" disabled>Wait..</button>
+    </div>
+</form>

@@ -1,0 +1,65 @@
+<form style="width:300px" #registerForm="ngForm" (ngSubmit)="doRegister(registerForm)">
+    <h5>Register to get started</h5>
+    <hr class="mt-4 mb-2">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input 
+        [disabled]="this.isSubmitted == true" 
+        required
+        minlength="4"
+        maxlength="20"
+        [(ngModel)]= "registerModel.username"
+        #username="ngModel"
+        type="text" 
+        class="form-control" 
+        id="username" 
+        name="username" 
+        aria-describedby="usernameHelp">
+      <small 
+      [style.visibility]="registerForm.invalid && registerForm.controls['username']?.touched && registerForm.controls['username']?.valid === false ? 'visible' : 'hidden' " 
+        id="usernameHelp" 
+        class="form-text text-danger">
+        Username should be atleast 4 characters long</small>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        [disabled]="this.isSubmitted == true" 
+        required
+        minlength="8"
+        [(ngModel)]= "registerModel.email"
+        #email="ngModel"
+        type="email" 
+        class="form-control" 
+        id="email" 
+        name="email" 
+        aria-describedby="emailHelp">
+      <small
+        [style.visibility]="registerForm.invalid && registerForm.controls['email']?.touched && registerForm.controls['email']?.valid === false ? 'visible' : 'hidden' "  
+        id="emailHelp" 
+        class="form-text text-muted">
+        Email address is invalid</small>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        [disabled]="this.isSubmitted == true" 
+        required
+        minlength="4"
+        maxlength="30"
+        [(ngModel)]= "registerModel.password"
+        #password="ngModel"
+        type="password" 
+        class="form-control" 
+        id="password" 
+        name="password" 
+        aria-describedby="passwordHelp">
+      <small 
+        [style.visibility]="registerForm.invalid && registerForm.controls['password']?.touched && registerForm.controls['password']?.valid === false ? 'visible' : 'hidden' "  
+        id="passwordHelp" 
+        class="form-text text-muted">
+        Password should be atleast 6 characters long</small>
+    </div>
+    <button [hidden]="this.isSubmitted == true"  type="submit" class="btn btn-primary btn-sm">Register</button>
+    <button [hidden]="this.isSubmitted == false" type="submit" class="btn btn-primary btn-sm align-right" disabled>Wait..</button>
+</form>

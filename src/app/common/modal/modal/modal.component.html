@@ -1,0 +1,14 @@
+<div id="{{modalWindowOptions?.windowId}}" class="container-fluid full-window top-level-frame">
+    <div class="row w-100 h-100">
+        <div class="jumbotron mx-auto my-auto p-3 vertical-center p-1">
+            <div class="text-right">
+                <button type="button" (click)="closeThis()" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <app-register  *ngIf="modalWindowOptions?.windowType === ModalWindowType.REGISTER"></app-register>
+            <app-loginn (forgotPassword)="showForgotPassword($event)"  *ngIf="modalWindowOptions?.windowType === ModalWindowType.LOGIN"></app-loginn>
+            <app-forgotpass  *ngIf="modalWindowOptions?.windowType === ModalWindowType.FORGOT"></app-forgotpass>
+        </div>        
+    </div>
+</div>

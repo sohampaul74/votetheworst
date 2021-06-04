@@ -1,2 +1,3 @@
-<app-header></app-header>
-<app-landing></app-landing>
+<app-header [modalWindowOptions]="modalWindowOptions" (showHideModalWindow)="toggleModalWindow($event)"></app-header>
+<app-modal [modalWindowOptions]="modalWindowOptions" *ngIf="modalWindowOptions.isWindowOpen" (showHideModalWindow)="toggleModalWindow($event)"></app-modal>
+<app-landing [modalWindowOptions]="modalWindowOptions" (toggleModalWindow)="toggleModalWindow($event)"></app-landing>

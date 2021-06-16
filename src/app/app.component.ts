@@ -23,7 +23,6 @@ export class AppComponent {
   toggleModalWindow(event: ModalWindowOptions) {
     console.log("app component toggleModalWindow called with ");
     console.log(event);
-    this.modalWindowOptions = this.modalWindowOptions;
     console.log(this.authService);
   }
 

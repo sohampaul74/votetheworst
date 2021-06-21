@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalWindowOptions } from '../../model/ModalWindowOptions';
 import { ModalWindowType } from '../../model/ModalWindowType';
+import { UserProfile } from '../../model/UserProfile';
 declare var $ : any;
 
 @Component({
@@ -10,20 +11,22 @@ declare var $ : any;
 })
 export class EntryComponent implements OnInit {
 
-  @Input() modalWindowOptions: ModalWindowOptions | undefined;
-  @Output() showHideModal: EventEmitter<ModalWindowOptions> = new EventEmitter();
+  @Input() userProfile: UserProfile | undefined;
+  @Output() userProfileChange = new EventEmitter<UserProfile>();
+  //@Output() showHideModal: EventEmitter<ModalWindowOptions> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
 
   toggleComponent(type: string): void {
-    console.log("in entry component "+this.modalWindowOptions?.isWindowOpen);
-    if(this.modalWindowOptions) {
-      this.modalWindowOptions.isWindowOpen = !this.modalWindowOptions.isWindowOpen;
-      this.modalWindowOptions.windowType = type as ModalWindowType;
+    console.log("in entry component "+this.userProfile?.modalWindowOption?.isWindowOpen);
+    if(this.userProfile?.modalWindowOption) {
+      this.userProfile.modalWindowOption.isWindowOpen = !this.userProfile.modalWindowOption.isWindowOpen;
+      this.userProfile.modalWindowOption.windowType = type as ModalWindowType;
+      this.userProfileChange.emit(this.userProfile);
+      //this.showHideModal.emit(this.userProfile.modalWindowOption);
     }
-    this.showHideModal.emit(this.modalWindowOptions);
   }
 
 }

@@ -2,6 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalWindowOptions } from '../model/ModalWindowOptions';
 import { ModalWindowType } from '../model/ModalWindowType';
+import { UserProfile } from '../model/UserProfile';
 
 @Component({
   selector: 'app-landing',
@@ -9,17 +10,19 @@ import { ModalWindowType } from '../model/ModalWindowType';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-  @Input() modalWindowOptions: ModalWindowOptions | undefined;
-  @Output() toggleModalWindow:EventEmitter<ModalWindowOptions> = new EventEmitter();
+  @Input() userProfile: UserProfile | undefined;
+  @Output() userProfileChange = new EventEmitter<UserProfile>();
+  //@Output() toggleModalWindow:EventEmitter<ModalWindowOptions> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
   toggleRegister() : void {
-    if(this.modalWindowOptions) { 
-      this.modalWindowOptions.windowType = "register" as ModalWindowType;
-      this.modalWindowOptions.isWindowOpen = true;
+    if(this.userProfile?.modalWindowOption) { 
+      this.userProfile.modalWindowOption.windowType = "register" as ModalWindowType;
+      this.userProfile.modalWindowOption.isWindowOpen = true;
+      this.userProfileChange.emit(this.userProfile);
+      //this.toggleModalWindow.emit(this.userProfile.modalWindowOption);
     }
-    this.toggleModalWindow.emit(this.modalWindowOptions);
   }
 }

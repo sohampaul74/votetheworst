@@ -3,16 +3,12 @@ import { AuthModel } from '../../model/AuthModel';
 import { AuthToken } from '../../model/AuthToken';
 import { RegisterModel } from '../../model/RegisterModel';
 import { AuthService } from '../../service/auth.service.interface';
-import { AuthServiceImpl } from '../../service/impl/auth.service';
 import { AUTH_SERVICE } from '../../service/impl/auth.service.token';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [{
-    provide: AUTH_SERVICE,useExisting:AuthServiceImpl
-  }]
 })
 export class RegisterComponent implements OnInit {
 

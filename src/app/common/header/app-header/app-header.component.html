@@ -35,6 +35,8 @@
           </div>
         </li>
       </ul>
-      <app-entry [modalWindowOptions]="modalWindowOptions" (showHideModal)="modalWindowControl($event)"></app-entry>
+      <app-entry [(userProfile)]="userProfile" *ngIf="userProfile?.isAuthenticated == false"></app-entry>
+      <app-profile [(userProfile)]="userProfile" *ngIf="userProfile?.isAuthenticated == true" ></app-profile>
+      <!-- <app-entry [userProfile]="userProfile" (showHideModal)="modalWindowControl($event)"></app-entry> -->
     </div>
   </nav>

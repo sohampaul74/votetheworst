@@ -1,3 +1,11 @@
-<app-header [modalWindowOptions]="modalWindowOptions" (showHideModalWindow)="toggleModalWindow($event)"></app-header>
-<app-modal [modalWindowOptions]="modalWindowOptions" *ngIf="modalWindowOptions.isWindowOpen" (showHideModalWindow)="toggleModalWindow($event)"></app-modal>
-<app-landing [modalWindowOptions]="modalWindowOptions" (toggleModalWindow)="toggleModalWindow($event)"></app-landing>
+<app-header [(userProfile)]="userProfile"></app-header>
+<app-modal [(userProfile)]="userProfile" *ngIf="this.userProfile?.modalWindowOption?.isWindowOpen"></app-modal>
+<app-landing [(userProfile)]="userProfile"></app-landing>
+<!--
+
+<app-header [(userProfile)]="userProfile" (showHideModalWindow)="toggleModalWindow($event)"></app-header>
+<app-modal [(userProfile)]="userProfile" *ngIf="this.userProfile?.modalWindowOption?.isWindowOpen" (showHideModalWindow)="toggleModalWindow($event)"></app-modal>
+<app-landing [(userProfile)]="userProfile" (toggleModalWindow)="toggleModalWindow($event)"></app-landing>
+
+
+-->

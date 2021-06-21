@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthToken } from '../../model/AuthToken';
 import { ModalWindowOptions } from '../../model/ModalWindowOptions';
 import {ModalWindowType} from '../../model/ModalWindowType';
+import { UserProfile } from '../../model/UserProfile';
 declare var $:any;
 @Component({
   selector: 'app-modal',
@@ -8,25 +10,37 @@ declare var $:any;
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  @Input() modalWindowOptions: ModalWindowOptions | undefined;
-  @Output() showHideModalWindow: EventEmitter<ModalWindowOptions> = new EventEmitter();
+  @Input() userProfile: UserProfile | undefined;
+  @Output() userProfileChange = new EventEmitter<UserProfile>();
+  //@Output() showHideModalWindow: EventEmitter<ModalWindowOptions> = new EventEmitter();
   ModalWindowType = ModalWindowType;
 
 
   ngOnInit(): void {
-    console.log("modal component: "+this.modalWindowOptions?.isWindowOpen);
+    console.log("modal component: "+this.userProfile?.modalWindowOption?.isWindowOpen);
   }
   closeThis(): void {
-    if(this.modalWindowOptions) {
-      this.modalWindowOptions.isWindowOpen = false;
+    if(this.userProfile?.modalWindowOption) {
+      this.userProfile.modalWindowOption.isWindowOpen = false;
+      this.userProfileChange.emit(this.userProfile);
+      //this.showHideModalWindow.emit(this.userProfile.modalWindowOption);
     }
-    this.showHideModalWindow.emit(this.modalWindowOptions);
   }
   showForgotPassword(args: any) : void {
-    if(this.modalWindowOptions) {
-      this.modalWindowOptions.isWindowOpen = true;
-      this.modalWindowOptions.windowType = "forgot" as ModalWindowType;
+    if(this.userProfile?.modalWindowOption) {
+      this.userProfile.modalWindowOption.isWindowOpen = true;
+      this.userProfile.modalWindowOption.windowType = "forgot" as ModalWindowType;
+      this.userProfileChange.emit(this.userProfile);
+      //this.showHideModalWindow.emit(this.userProfile.modalWindowOption);
     }
-    this.showHideModalWindow.emit(this.modalWindowOptions);
+  }
+  updateView(args: AuthToken) : void {
+    console.log(args);
+    if(this.userProfile) {
+      this.userProfile.authToken = args;
+      this.userProfile.isAuthenticated = true;
+      this.userProfile.loginTime = Date.now();
+    }
+    this.closeThis();
   }
 }

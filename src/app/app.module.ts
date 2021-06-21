@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { LoginnComponent } from './common/form/loginn/loginn.component';
 import { RegisterComponent } from './common/form/register/register.component';
 import { ForgotpassComponent } from './common/form/forgotpass/forgotpass.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './common/header/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalComponent,
     LoginnComponent,
     RegisterComponent,
-    ForgotpassComponent
+    ForgotpassComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule

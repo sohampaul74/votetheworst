@@ -45,7 +45,7 @@
             name="password" 
             placeholder="provide password here" 
             required
-            minlength="6"
+            minlength="3"
             maxlength="30">
         <small 
             [style.visibility]="loginForm.invalid && loginForm.controls['password']?.touched && loginForm.controls['password']?.valid === false ? 'visible' : 'hidden' " 

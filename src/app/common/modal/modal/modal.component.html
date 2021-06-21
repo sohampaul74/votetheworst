@@ -1,4 +1,4 @@
-<div id="{{modalWindowOptions?.windowId}}" class="container-fluid full-window top-level-frame">
+<div id="{{userProfile?.modalWindowOption?.windowId}}" class="container-fluid full-window top-level-frame">
     <div class="row w-100 h-100">
         <div class="jumbotron mx-auto my-auto p-3 vertical-center p-1">
             <div class="text-right">
@@ -6,9 +6,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <app-register  *ngIf="modalWindowOptions?.windowType === ModalWindowType.REGISTER"></app-register>
-            <app-loginn (forgotPassword)="showForgotPassword($event)"  *ngIf="modalWindowOptions?.windowType === ModalWindowType.LOGIN"></app-loginn>
-            <app-forgotpass  *ngIf="modalWindowOptions?.windowType === ModalWindowType.FORGOT"></app-forgotpass>
+            <app-register  *ngIf="userProfile?.modalWindowOption?.windowType === ModalWindowType.REGISTER"></app-register>
+            <app-loginn (authenticationSuccess)="updateView($event)" (forgotPassword)="showForgotPassword($event)"  *ngIf="userProfile?.modalWindowOption?.windowType === ModalWindowType.LOGIN"></app-loginn>
+            <app-forgotpass  *ngIf="userProfile?.modalWindowOption?.windowType === ModalWindowType.FORGOT"></app-forgotpass>
         </div>        
     </div>
 </div>

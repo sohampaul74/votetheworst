@@ -34,6 +34,14 @@ export class ModalComponent implements OnInit {
       //this.showHideModalWindow.emit(this.userProfile.modalWindowOption);
     }
   }
+
+  showLoginWindow() : void {
+    if(this.userProfile?.modalWindowOption) {
+      this.userProfile.modalWindowOption.windowType = "login" as ModalWindowType;
+      this.userProfileChange.emit(this.userProfile);
+    }
+  }
+
   updateView(args: AuthToken) : void {
     console.log(args);
     if(this.userProfile) {

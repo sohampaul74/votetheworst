@@ -2,8 +2,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { retry, catchError } from 'rxjs/operators';
+import { AppResponse } from "../../model/AppResponse";
 import { AuthModel } from "../../model/AuthModel";
 import { AuthToken } from "../../model/AuthToken";
+import { RegisterModel } from "../../model/RegisterModel";
 import { AuthService } from "../auth.service.interface";
 
 @Injectable({
@@ -12,6 +14,7 @@ import { AuthService } from "../auth.service.interface";
 export class AuthServiceImpl implements AuthService<AuthModel, AuthToken> {
     authToken?: AuthToken | undefined;
     endpoint = "http://localhost:8082/oauth/token";
+    registerEndpoint = "http://localhost:8082/user/access/register";
 
     constructor(private httpClient : HttpClient) {}
 
@@ -40,8 +43,16 @@ export class AuthServiceImpl implements AuthService<AuthModel, AuthToken> {
     doLoginWithRefreshToken(refreshToken: string): Observable<AuthToken> {
         throw new Error("Method not implemented.");
     }
-    doRegister(registerModel: AuthModel): Observable<boolean> {
-        throw new Error("Method not implemented.");
+    doRegister(registerModel: RegisterModel): Observable<AppResponse> {
+        let httpHeader = {
+            headers: new HttpHeaders({
+                'content-type': 'application/json',
+                'cache-control': 'no-cache',
+                'Authorization': 'Basic bW9iaWxlOm1vYmlsZQ=='
+            })
+        }
+        return this.httpClient.post<AppResponse>(this.registerEndpoint,JSON.stringify(registerModel),httpHeader)
+            .pipe(retry(1),catchError(this.errorHandle));
     }
     errorHandle(error: any) {
         let msg =  {

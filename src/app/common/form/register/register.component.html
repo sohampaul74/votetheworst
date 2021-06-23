@@ -61,5 +61,6 @@
         Password should be atleast 6 characters long</small>
     </div>
     <button [hidden]="this.isSubmitted == true"  type="submit" class="btn btn-primary btn-sm">Register</button>
-    <button [hidden]="this.isSubmitted == false" type="submit" class="btn btn-primary btn-sm align-right" disabled>Wait..</button>
+    <button [hidden]="this.isSubmitted == false || this.isSuccess == true" type="submit" class="btn btn-primary btn-sm align-right" disabled>Wait..</button>
+    <button [hidden]="this.isSuccess == false" type="submit" class="btn btn-primary btn-sm align-right" disabled>Success. Login to continue..</button>
 </form>

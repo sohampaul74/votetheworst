@@ -6,9 +6,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <app-register  *ngIf="userProfile?.modalWindowOption?.windowType === ModalWindowType.REGISTER"></app-register>
+            <app-register (registrationSuccess)="showLoginWindow()"  *ngIf="userProfile?.modalWindowOption?.windowType === ModalWindowType.REGISTER"></app-register>
             <app-loginn (authenticationSuccess)="updateView($event)" (forgotPassword)="showForgotPassword($event)"  *ngIf="userProfile?.modalWindowOption?.windowType === ModalWindowType.LOGIN"></app-loginn>
             <app-forgotpass  *ngIf="userProfile?.modalWindowOption?.windowType === ModalWindowType.FORGOT"></app-forgotpass>
-        </div>        
+        </div>
     </div>
 </div>

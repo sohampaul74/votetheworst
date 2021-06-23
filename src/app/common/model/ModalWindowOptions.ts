@@ -5,5 +5,6 @@ export class ModalWindowOptions {
     isWindowOpen : boolean = false;
     windowId : string = "int-modal-window";
     windowType: ModalWindowType = "register" as ModalWindowType;
+    prevAction: string = "null";
 }
 

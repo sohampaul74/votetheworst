@@ -15,6 +15,7 @@ export class LoginnComponent implements OnInit {
   @Output() authenticationSuccess: EventEmitter<AuthToken> = new EventEmitter();
   authModel: AuthModel = new AuthModel();
   isSubmitted: boolean = false;
+  isSuccess: boolean = false;
 
   constructor(@Inject(AUTH_SERVICE) private authService: AuthService<AuthModel,AuthToken>) {
   }
@@ -37,7 +38,10 @@ export class LoginnComponent implements OnInit {
     this.authService.doLoginWithCredential(this.authModel).subscribe(
       ( data: any ) => { 
         this.authService.authToken = new AuthToken(data.access_token,data.expires_in+Date.now(),data.refresh_token);
-        this.authenticationSuccess.emit(this.authService.authToken);
+        this.isSuccess = true;
+        setTimeout(()=>{
+          this.authenticationSuccess.emit(this.authService.authToken);
+        },1000);
       }, 
       ( error: any ) => { 
         this.isSubmitted = false;

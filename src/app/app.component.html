@@ -1,6 +1,7 @@
 <app-header [(userProfile)]="userProfile"></app-header>
 <app-modal [(userProfile)]="userProfile" *ngIf="this.userProfile?.modalWindowOption?.isWindowOpen"></app-modal>
 <app-landing [(userProfile)]="userProfile"></app-landing>
+<app-room></app-room>
 <!--
 
 <app-header [(userProfile)]="userProfile" (showHideModalWindow)="toggleModalWindow($event)"></app-header>

@@ -13,6 +13,7 @@ import { RegisterComponent } from './common/form/register/register.component';
 import { ForgotpassComponent } from './common/form/forgotpass/forgotpass.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './common/header/profile/profile.component';
+import { RoomComponent } from './common/widget/room/room.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProfileComponent } from './common/header/profile/profile.component';
     LoginnComponent,
     RegisterComponent,
     ForgotpassComponent,
-    ProfileComponent
+    ProfileComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
